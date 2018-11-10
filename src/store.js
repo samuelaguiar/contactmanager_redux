@@ -7,10 +7,10 @@ const initalState = {};
 const middleware = [thunk];
 
 const devTools =
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-if (process.env.NODE_ENV === "prod" || process.env.NODE_ENV === "production") {
-  devTools = a => a;
-}
+  process.env.NODE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+    : null;
 
 const store = createStore(
   rootReducer,
